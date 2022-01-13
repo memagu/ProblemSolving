@@ -5,16 +5,13 @@ for i in range(4):
 directions = {0: [0, -1], 1: [-1, 0], 2: [0, 1], 3: [1, 0]}
 direction = directions[int(input())]
 
-move = True
-while move:
-    move = False
+for i in range(2):
     for row in list(range(4))[::(direction[0] if direction[0] != 0 else 1)]:
         for col in list(range(4))[::(direction[1] if direction[1] != 0 else 1)]:
             curr = grid[row][col]
             if row + direction[0] not in [-1, 4] and col + direction[1] not in [-1, 4] and curr != 0:
                 comp = grid[row + direction[0]][col + direction[1]]
                 if comp in [curr, 0]:
-                    move = True
                     #print(f"row: {row}, col: {col}, value: {grid[row][col]}")
                     grid[row + direction[0]][col + direction[1]] += curr
                     grid[row][col] = 0
