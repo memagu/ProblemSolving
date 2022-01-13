@@ -1,1 +1,6 @@
-# This is a repository containing my solutions for Kattis and LeetCode problems
+# ProblemSolving
+
+[Kattis](https://open.kattis.com/)
+[LeetCode](https://leetcode.com/)
+
+My solutions to problems from Kattis.com and
