@@ -1,38 +1,38 @@
-class Tile:
-    def __init__(self, value):
-        self.value = value
-        self.combined = False
-
-    def __str__(self):
-        return str(self.value)
-
-
 grid = []
 for i in range(4):
-    grid.append([Tile(x) for x in list(map(int, input().split()))])
+    grid.append([[x, False] for x in list(map(int, input().split()))])
 
-directions = {0: [0, -1], 1: [-1, 0], 2: [0, 1], 3: [1, 0]}
+directions = {2: [0, -1], 3: [-1, 0], 0: [0, 1], 1: [1, 0]}
 direction = directions[int(input())]
+
 
 move = True
 while move:
     move = False
+    last = []
+    for i in range(4):
+        last.append([[x[0], x[1]] for x in grid[i]])
+
     for row in list(range(4))[::(direction[0] if direction[0] != 0 else 1)]:
         for col in list(range(4))[::(direction[1] if direction[1] != 0 else 1)]:
+
             curr = grid[row][col]
-            if row + direction[0] not in [-1, 4] and col + direction[1] not in [-1, 4] and curr != 0:
+
+            if row + direction[0] not in [-1, 4] and col + direction[1] not in [-1, 4]:
                 comp = grid[row + direction[0]][col + direction[1]]
-                if comp.value in [curr.value, 0] and not comp.combined:
-                    move = True
-                    comp.combined = True
-                    # print(f"row: {row}, col: {col}, value: {grid[row][col]}")
-                    comp.value += curr.value
-                    curr.value = 0
 
-for row in grid:
-    s = " ".join([str(t) for t in row])
-    print(s)
+                if curr[0] + comp[0] != 0:
+                    if (comp[0] in [curr[0], 0] or curr[0] == 0) and not (curr[1] or comp[1]):
+                        grid[row][col] = [curr[0] + comp[0], comp[1]]
+                        grid[row + direction[0]][col + direction[1]] = [0, False]
+                        move = True
 
-# dra mot
-# kombinera
-# kom ihåg om kombinerad
+                        if (curr[0] == comp[0] and comp[0] != 0) or (curr[0] != 0 and comp[0] == curr[0]):
+                            grid[row][col][1] = True
+
+    if last == grid:
+        move = False
+
+for r in grid:
+    s_v = " ".join([str(t[0]) for t in r])
+    print(s_v)
