@@ -9,11 +9,7 @@ for i in range(grid_size):
 directions = {2: [0, -1], 3: [-1, 0], 0: [0, 1], 1: [1, 0]}
 direction = directions[int(input())]
 
-
-move = True
-while move:
-    move = False
-
+while True:
     # Copy grid
     last = []
     for i in range(grid_size):
@@ -34,7 +30,6 @@ while move:
                     if (comp[0] in [curr[0], 0] or curr[0] == 0) and not (curr[1] or comp[1]):
                         grid[row][col] = [curr[0] + comp[0], comp[1]]
                         grid[row + direction[0]][col + direction[1]] = [0, False]
-                        move = True
 
                         # Make the tile remember if it was merged
                         if (curr[0] == comp[0] and comp[0] != 0) or (curr[0] != 0 and comp[0] == curr[0]):
