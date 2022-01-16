@@ -7,7 +7,7 @@ for token in s:
     if token in ["L", "R"]:
         pos = max(pos + tokens[token], 0)
     elif token == "B":
-        result.pop(pos-1)
+        result.pop(pos - 1)
         pos = max(pos - 1, 0)
     else:
         result.insert(pos, token)
