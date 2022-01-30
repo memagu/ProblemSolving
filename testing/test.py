@@ -1,12 +1,8 @@
-import random
-random.seed(1)
+from functools import reduce
 
-def generate_grid():
+arr = [1,2,3,4]
 
-    chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', '.']
-    chars = random.sample(chars, 16)
-    result = []
-    for i in range(4):
-        result.append(chars[i * 4: i * 4 + 4])
+result = reduce(lambda a, b: a * b, arr)
 
-    return result
+print(result)
+

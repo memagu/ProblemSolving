@@ -1,4 +1,3 @@
-
 # number_of_lists, number_of_items = list(map(int, input().split()))
 #
 # start_list = input().split()
@@ -44,19 +43,38 @@
 # for item in checklist:
 #     print(item)
 
-from functools import reduce
 
-number_of_lists, _ = list(map(int, input().split()))
-lists = []
+# from functools import reduce
+#
+# number_of_lists, _ = list(map(int, input().split()))
+# lists = []
+#
+# for i in range(number_of_lists):
+#     lists.append(set(input().split()))
+#
+# result = reduce(lambda a, b: a.intersection(b), lists)
+#
+# result = list(result)
+# result.sort()
+#
+# print(len(result))
+# for item in result:
+#     print(item)
 
-for i in range(number_of_lists):
-    lists.append(set(input().split()))
+n = int(input().split()[0])
 
-result = reduce(lambda a, b: a.intersection(b), lists)
+for i in range(n):
+    temp = []
+    current = list(set(input().split()))
+    if i == 0:
+        previous = [*current]
 
-result = list(result)
-result.sort()
+    for item in previous:
+        if item in current:
+            temp.append(item)
 
-print(len(result))
-for item in result:
+    previous = [*temp]
+
+print(len(previous))
+for item in sorted(previous):
     print(item)
