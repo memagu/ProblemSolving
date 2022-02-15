@@ -3,12 +3,12 @@
 #         pos = max(pos + tokens[token], 0)
 #         pos += tokens[token]
 #     elif token == "B":
-#         result.pop(pos - 1)
+#         result_1.pop(pos - 1)
 #         pos = max(pos - 1, 0)
 #         pos -= 1
-#         result.pop(pos)
+#         result_1.pop(pos)
 #     else:
-#         result.insert(pos, token)
+#         result_1.insert(pos, token)
 #         pos += 1
 
 s = input()

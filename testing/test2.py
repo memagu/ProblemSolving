@@ -1,7 +1,7 @@
-result = []
+with open("test.txt", "w") as f:
+    _ = input().strip()
+    ltr = input().strip()
+    rtl = input().strip()
+    shift = int(input().strip())
 
-for i in range(63):
-    print(i)
-    result.append(str(3**i))
-
-print(result)
+    f.write(f"{_} {ltr} {rtl} {shift}")

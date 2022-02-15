@@ -19,8 +19,8 @@
 #     bird_amount += 1
 #
 # if results:
-#     for result in results:
-#         print(" ".join(map(str, result)))
+#     for result_1 in results:
+#         print(" ".join(map(str, result_1)))
 #
 # else:
 #     print("impossible")

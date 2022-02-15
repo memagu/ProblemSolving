@@ -52,13 +52,13 @@
 # for i in range(number_of_lists):
 #     lists.append(set(input().split()))
 #
-# result = reduce(lambda a, b: a.intersection(b), lists)
+# result_1 = reduce(lambda a, b: a.intersection(b), lists)
 #
-# result = list(result)
-# result.sort()
+# result_1 = list(result_1)
+# result_1.sort()
 #
-# print(len(result))
-# for item in result:
+# print(len(result_1))
+# for item in result_1:
 #     print(item)
 
 n = int(input().split()[0])

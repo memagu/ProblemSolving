@@ -22,3 +22,11 @@ if l % 2 == 0:
     print((nums[(l) // 2] + nums[(l-2) // 2]) / 2)
 else:
     print(nums[(l-1)//2])
+
+
+# aabb
+# baba
+# baab
+# bbaa
+# abba
+# baab
