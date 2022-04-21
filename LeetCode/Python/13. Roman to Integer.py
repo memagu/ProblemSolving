@@ -24,3 +24,10 @@ def romanToInt(s: str) -> int:
         prev = char
 
     return result
+
+
+year = romanToInt("MCMLXX")
+month = romanToInt("V")
+day = romanToInt("XXVII")
+
+print(f"{day}/{month}-{year}")
