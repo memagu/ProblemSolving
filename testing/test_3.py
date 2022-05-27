@@ -1,0 +1,1 @@
+print("101".endswith("01"))
