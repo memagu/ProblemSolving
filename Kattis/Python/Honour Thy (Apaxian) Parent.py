@@ -12,4 +12,3 @@ elif y.endswith("ex"):
 
 else:
     print(y + "ex" + p)
-    
