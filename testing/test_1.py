@@ -1,8 +1,11 @@
-n = 3
-x = 1
-y = 1
+def func(x):
+    res = 0
+    for i in range(x):
+        res += i
+    return res
 
-for i in range(1, n+1):
-    s = sum(range(1, i+1))
-    print(i, s, ((i+1)/2 * i), round(s/(x+y), 2))
 
+def func2(x):
+    return sum(i for i in range(x))
+
+print(func2(4))
