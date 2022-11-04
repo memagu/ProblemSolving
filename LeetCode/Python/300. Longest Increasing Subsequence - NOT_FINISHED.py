@@ -3,17 +3,17 @@ from typing import List
 
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        cache = [1] * len(nums)
+        counts = [1 for _ in range(len(nums))]
 
         for i in range(len(nums) - 1, -1, -1):
             max_len = 0
             for j in range(i + 1, len(nums)):
-                if nums[j] > nums[i] and max_len < cache[j]:
-                    max_len = cache[j]
+                if nums[j] > nums[i] and max_len < counts[j]:
+                    max_len = counts[j]
 
-            cache[i] += max_len
+            counts[i] += max_len
 
-        return max(cache)
+        return max(counts)
 
 
 # class Solution:
@@ -38,6 +38,8 @@ class Solution:
 
 
 if __name__ == "__main__":
-    print(Solution().lengthOfLIS([11, 2, 4, 12]))
-    print(Solution().lengthOfLIS([7, 7, 7, 7]))
+    # print(Solution().lengthOfLIS([11, 2, 4, 12]))
+    # print(Solution().lengthOfLIS([7, 7, 7, 7]))
     print(Solution().lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]))
+    # print(Solution().lengthOfLIS([0, 1, 0, 3, 2, 3]))
+    # print(Solution().lengthOfLIS([7, 7, 7, 7, 7, 7, 7]))

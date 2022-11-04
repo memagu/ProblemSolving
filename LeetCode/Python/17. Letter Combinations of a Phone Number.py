@@ -11,7 +11,6 @@ def letterCombinations(digits: str) -> [str]:
                         "8": ["t", "u", "v"],
                         "9": ["w", "x", "y", "z"]}
 
-
     def combinations(digits: str) -> [str]:
         if not digits:
             return [""]
@@ -23,8 +22,8 @@ def letterCombinations(digits: str) -> [str]:
 
         return result
 
-
     return combinations(digits)
+
 
 with open("letter_combinations.txt", "w") as f:
     lc = letterCombinations("23434532")
