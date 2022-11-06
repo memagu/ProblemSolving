@@ -17,11 +17,11 @@ def get_problem_data(url: str) -> Tuple[int, str, List[str], List[Dict[str, str]
     api_url = "https://leetcode.com/graphql/"
 
     data_info = requests.get(api_url, json=json_query_info).json()
-    deta_info_question = data_info["data"]["question"]
+    data_info_question = data_info["data"]["question"]
 
-    problem_id = deta_info_question["questionId"]
-    problem_title = deta_info_question["questionTitle"]
-    example_test_cases = deta_info_question["exampleTestcaseList"]
+    problem_id = data_info_question["questionId"]
+    problem_title = data_info_question["questionTitle"]
+    example_test_cases = data_info_question["exampleTestcaseList"]
 
     data_code_snippets = requests.get(api_url, json=json_query_code_snippets).json()
     code_snippets = data_code_snippets["data"]["question"]["codeSnippets"]
