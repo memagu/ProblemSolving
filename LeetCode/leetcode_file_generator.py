@@ -18,6 +18,7 @@ def get_problem_data(url: str) -> Tuple[int, str, List[str], List[Dict[str, str]
 
     data_info = requests.get(api_url, json=json_query_info).json()
     deta_info_question = data_info["data"]["question"]
+
     problem_id = deta_info_question["questionId"]
     problem_title = deta_info_question["questionTitle"]
     example_test_cases = deta_info_question["exampleTestcaseList"]
@@ -99,7 +100,9 @@ def main() -> None:
             break
 
     if lang == "python3":
-        if len(file_content.split('\n')) < 4:
+        file_content = "from typing import Dict, List, Tuple\n\n\n" + file_content
+
+        try:
             function_name = file_content.split('\n')[1].split()[1].split('(')[0]
             test_cases = []
 
@@ -108,6 +111,8 @@ def main() -> None:
                 test_cases.append(f"print(Solution().{function_name}({args}))")
 
             file_content += f'\n\n\nif __name__ == "__main__":\n    ' + "\n    ".join(test_cases)
+        except IndexError:
+            pass
 
     os.makedirs(directory, exist_ok=True)
 
