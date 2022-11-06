@@ -103,7 +103,7 @@ def main() -> None:
         file_content = f'from typing import Dict, List, Tuple\n\n\n{file_content}\n\n\nif __name__ == "__main__":\n    '
 
         try:
-            function_name = file_content.split('\n')[2].split()[1].split('(')[0]
+            function_name = file_content.split('\n')[4].split()[1].split('(')[0]
         except IndexError:
             function_name = "replace_this_with_solution_method_name"
 
