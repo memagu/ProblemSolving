@@ -100,19 +100,20 @@ def main() -> None:
             break
 
     if lang == "python3":
-        file_content = "from typing import Dict, List, Tuple\n\n\n" + file_content
+        file_content = f'from typing import Dict, List, Tuple\n\n\n{file_content}\n\n\nif __name__ == "__main__":\n    '
 
         try:
-            function_name = file_content.split('\n')[1].split()[1].split('(')[0]
-            test_cases = []
-
-            for test_case in example_test_cases:
-                args = ", ".join(test_case.split('\n'))
-                test_cases.append(f"print(Solution().{function_name}({args}))")
-
-            file_content += f'\n\n\nif __name__ == "__main__":\n    ' + "\n    ".join(test_cases)
+            function_name = file_content.split('\n')[2].split()[1].split('(')[0]
         except IndexError:
-            pass
+            function_name = "replace_this_with_solution_method_name"
+
+        test_cases = []
+
+        for test_case in example_test_cases:
+            args = ", ".join(test_case.split('\n'))
+            test_cases.append(f"print(Solution().{function_name}({args}))")
+
+        file_content += "\n    ".join(test_cases)
 
     os.makedirs(directory, exist_ok=True)
 
