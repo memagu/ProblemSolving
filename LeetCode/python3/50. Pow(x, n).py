@@ -10,5 +10,6 @@
 #
 #     return(1 / pow(x, n * -1))
 
-def myPow(x, n):
-    return x ** n
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        return x ** n
