@@ -12,13 +12,15 @@
 # else:
 #   print("HE GOT AWAY!")
 
-out = ""
+# out = ""
+#
+# for i in range(5):
+#   if "FBI" in input():
+#     out += str(i + 1) + " "
+#
+# if out == "":
+#   print("HE GOT AWAY!")
+# else:
+#   print(out[:-1])
 
-for i in range(5):
-  if "FBI" in input():
-    out += str(i + 1) + " "
-
-if out == "":
-  print("HE GOT AWAY!")
-else:
-  print(out[:-1])
+print(" ".join(indices) if (indices := [str(i) for i in range(1, 6) if "FBI" in input()]) else "HE GOT AWAY!")
