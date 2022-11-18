@@ -1,5 +1,5 @@
 """
-# Slow O(n^2) / (n/2)^2
+# Slow O(n^2) | (n/2)^2
 
 necklace = input()
 split_length = len(necklace) >> 1
