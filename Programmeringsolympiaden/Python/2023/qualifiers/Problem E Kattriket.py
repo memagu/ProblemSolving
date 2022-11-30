@@ -1,6 +1,38 @@
-from collections import defaultdict, deque
+from collections import defaultdict
+from sys import setrecursionlimit
+from typing import Dict, List, Optional, Set
 
-n = int(input())
+"""
+def paths_to_node(node: str, graph: Dict[str, List[str]], paths: Optional[Dict[str, List[str]]] = None) -> Dict[str, List[str]]:
+    if paths is None:
+        paths = {node: [node]}
+
+    for child in graph[node]:
+        paths[child] = [child, *paths[node]]
+        paths_to_node(child, graph, paths)
+
+    return paths
+"""
+
+
+def max_depths_from_node(node: str, graph: Dict[str, List[str]]) -> Dict[str, int]:
+    children = graph[node]
+
+    if not children:
+        return {node: 0}
+
+    max_depths = {}
+    for child in children:
+        max_depths.update(max_depths_from_node(child, graph))  # O(1)
+
+    max_depths[node] = max(max_depths[child] for child in children) + 1
+
+    return max_depths
+
+
+setrecursionlimit(10 << 16)
+
+n = int(input())  # Antalet städer
 
 graph = defaultdict(list)
 for _ in range(n - 1):
@@ -11,33 +43,4 @@ for _ in range(n - 1):
     if child not in graph:
         graph[child] = []
 
-widths = []
-visited = set()
-queue = deque(graph['0'])
-
-while queue:
-    widths.append(len(queue))
-    for _ in range(len(queue)):
-        current_node = queue.popleft()
-
-        for child in graph[current_node]:
-            if child in visited:
-                continue
-
-            visited.add(child)
-            queue.append(child)
-
-result = []
-depth_sum = sum(widths)
-i = 0
-
-while depth_sum:
-    forks = i // len(widths) + 1
-    j = i % len(widths)
-    if widths[j]:
-        widths[j] -= 1
-        depth_sum -= 1
-        result.append(str(forks))
-    i += 1
-
-print(" ".join(result))
+print(max_depths_from_node('0', graph))
