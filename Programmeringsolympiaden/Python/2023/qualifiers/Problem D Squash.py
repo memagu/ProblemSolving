@@ -29,6 +29,3 @@ def max_of_k_intervals(i: int, intervals_remaining: int, include: bool, match_re
     
     
 print(max_of_k_intervals(0, k, False, match_results))
-
-
-
