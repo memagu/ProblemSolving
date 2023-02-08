@@ -100,7 +100,7 @@ def main() -> None:
             break
 
     if lang == "python3":
-        file_content = f'from typing import Dict, List, Optional, Tuple\n\n\n{file_content}\n\n\nif __name__ == "__main__":\n    '
+        file_content = f'from typing import Dict, List, Optional, Tuple\n\n\n{file_content}pass\n\n\nif __name__ == "__main__":\n    '
 
         try:
             function_name = file_content.split('\n')[4].split()[1].split('(')[0]

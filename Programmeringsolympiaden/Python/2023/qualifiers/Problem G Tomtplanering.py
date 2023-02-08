@@ -1,4 +1,5 @@
-from collections import deque, namedtuple
+from collections import namedtuple
+from random import shuffle
 
 House = namedtuple("House", ("label", "x", "y"))
 
@@ -17,26 +18,27 @@ for house_num in range(1, n + 1):
 
 houses.sort(key=lambda house: house.x + house.y)
 
-median = len(houses) >> 1
-left = median - 1
-right = median + 1
+house_amount = (len(houses) >> 1) - 1
 
-result = deque((houses[median],))
-for _ in range(median - 1):
-    left_dist = right_dist = float("inf")
+min_interval = (0, sum(distance(houses[i], houses[i + 1]) for i in range(house_amount)))
+interval_distance = min_interval[1]
 
-    if left >= 0:
-        left_dist = distance(result[0], houses[left])
+for i in range(1, len(houses) >> 1):
+    interval_distance += distance(houses[i + house_amount], houses[i + house_amount + 1]) - distance(houses[i - 1], houses[i])
 
-    if right < len(houses):
-        right_dist = distance(result[-1], houses[right])
+    if interval_distance < min_interval[1]:
+        min_interval = (i, interval_distance)
 
-    if left_dist <= right_dist:
-        result.appendleft(houses[left])
-        left -= 1
-        continue
+houses = houses[min_interval[0]:min_interval[0] + house_amount + 1]
+min_houses = houses.copy()
+min_houses_distance = min_interval[1]
 
-    result.append(houses[right])
-    right += 1
+for _ in range(256):
+    shuffle(houses)
+    house_distance = sum(distance(houses[i], houses[i + 1]) for i in range(house_amount))
 
-print(" ".join(house.label for house in result))
+    if house_distance < min_houses_distance:
+        min_houses_distance = house_distance
+        min_houses = houses.copy()
+
+print(" ".join(house.label for house in min_houses))

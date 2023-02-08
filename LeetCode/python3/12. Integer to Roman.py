@@ -33,6 +33,7 @@
 #
 #         return result
 
+"""
 class Solution:
     def intToRoman(self, num: int) -> str:
         conversion = ((1000, 'M'),
@@ -61,7 +62,20 @@ class Solution:
                 i += 1
 
         return result
+"""
 
+
+class Solution:
+    def intToRoman(self, num: int) -> str:
+        integers = (1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
+        romans = ("M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I")
+
+        result = ""
+        for integer, roman in zip(integers, romans):
+            result += roman * (num // integer)
+            num %= integer
+
+        return result
 
 
 if __name__ == "__main__":
