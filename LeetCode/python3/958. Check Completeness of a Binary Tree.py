@@ -26,14 +26,18 @@ class Solution:
             if left_child:
                 if not anticipate_node:
                     return False
+
                 queue.append(left_child)
+
             else:
                 anticipate_node = False
 
             if right_child:
                 if not anticipate_node:
                     return False
+
                 queue.append(right_child)
+
             else:
                 anticipate_node = False
 
