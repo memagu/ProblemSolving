@@ -1,23 +1,9 @@
-# x = statues
-# y = printers
-# z = days
+required_statues = int(input())
+printers = 1
+days = 0
 
-x = input()
-y = 1
-z = 0
+while printers < required_statues:
+    printers *= 2
+    days += 1
 
-#1 1 1
-#2 2 2
-#3 3 2
-#4 3 2
-#5 4 2
-
-while y < int(x):
-    y *= 2
-    z += 1
-
-z += 1
-print(z)
-
-
-
+print(days + 1)

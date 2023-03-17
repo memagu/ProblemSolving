@@ -1,7 +1,7 @@
 n = int(input())
 
-z = 0
+total_length = 0
 for _ in range(n):
-    z += int(input())
+    total_length += int(input())
 
-print(z - n + 1)
+print(total_length - n + 1)
