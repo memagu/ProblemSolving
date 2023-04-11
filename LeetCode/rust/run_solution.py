@@ -26,7 +26,7 @@ def filename_to_cratename(filename: str) -> str:
 
         cratename += '_'
 
-    return re.sub(r"_{2,}", '_', cratename)
+    return re.sub("_{2,}", '_', cratename)
 
 
 def main():
@@ -47,7 +47,7 @@ def main():
 
     try:
         program_output = subprocess.check_output(f"{OUTPUT_DIR}/{crate_name}.exe").decode("utf-8")
-        print(f"'{crate_name}'.exe finished execution and proudec the following output:\n\n{program_output}")
+        print(f"'{crate_name}'.exe finished execution and produced the following output:\n\n{program_output}")
     except subprocess.CalledProcessError:
         print(f"Runtime error while running '{crate_name}.exe'. Exiting . . . ")
 
