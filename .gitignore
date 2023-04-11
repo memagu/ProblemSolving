@@ -324,3 +324,4 @@ cython_debug/
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,python,pycharm,c++
 
 /testing/
+/LeetCode/rust/bin/
