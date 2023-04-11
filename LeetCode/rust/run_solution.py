@@ -6,12 +6,12 @@ import subprocess
 OUTPUT_DIR = "./bin"
 
 
-def find_file(prefix: str) -> str:
+def find_file(number_prefix: str) -> str:
     for file in os.listdir(os.getcwd()):
-        if file.startswith(prefix):
+        if file[:file.find('.')] == number_prefix:
             return file
 
-    print(f"File starting with '{prefix}' could not be found in '{os.getcwd()}'. Exiting . . .")
+    print(f"File with number prefix '{number_prefix}' could not be found in '{os.getcwd()}'. Exiting . . .")
     exit()
 
 
@@ -30,8 +30,8 @@ def filename_to_cratename(filename: str) -> str:
 
 
 def main():
-    solution_prefix = input("Enter problem number: ")
-    solution_file = find_file(solution_prefix)
+    solution_number = input("Enter problem number: ")
+    solution_file = find_file(solution_number)
     crate_name = filename_to_cratename(solution_file)
 
     try:
