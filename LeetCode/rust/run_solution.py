@@ -40,7 +40,8 @@ def main():
              solution_file,
              f"--out-dir={OUTPUT_DIR}",
              f"--crate-name={crate_name}",
-             "-C", "opt-level=3"))
+             "-C",
+             "opt-level=3"))
     except subprocess.CalledProcessError:
         print(f"'{solution_file}' failed to compile. Exiting . . .")
         exit()
