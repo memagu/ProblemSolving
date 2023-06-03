@@ -7,8 +7,12 @@ class Solution:
         cache = [0] * n
         max_time = 0
 
+        queue = []
         for employee in range(n):
-            queue = []
+            if employee == headID:
+                continue
+
+            queue.clear()
 
             curr_employee = employee
             while cache[curr_employee] == 0 and manager[curr_employee] != -1:
