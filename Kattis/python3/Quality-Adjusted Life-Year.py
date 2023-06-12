@@ -1,10 +1,4 @@
 # https://open.kattis.com/problems/qaly
-n = int(input())
+import math
 
-total = 0
-
-for i in range(n):
-    q, y = map(float, input().split())
-    total += q * y
-
-print(total)
+print(sum(math.prod(map(float, input().split())) for _ in range(int(input()))))
