@@ -1,4 +1,4 @@
 # https://open.kattis.com/problems/qaly
-import math
+from math import prod
 
-print(sum(math.prod(map(float, input().split())) for _ in range(int(input()))))
+print(sum(prod(map(float, input().split())) for _ in range(int(input()))))
