@@ -35,7 +35,6 @@ class Solution:
         return min_diff
 
 
-
 if __name__ == "__main__":
     print(Solution().getMinimumDifference(TreeNode(4, TreeNode(2, TreeNode(1), TreeNode(3)), TreeNode(6))))
     print(Solution().getMinimumDifference(TreeNode(1, TreeNode(0), TreeNode(48, TreeNode(12), TreeNode(49)))))

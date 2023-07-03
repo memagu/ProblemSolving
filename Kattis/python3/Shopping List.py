@@ -46,17 +46,5 @@
 
 from functools import reduce
 
-number_of_lists, _ = list(map(int, input().split()))
-lists = []
+(lambda common_items: print(len(common_items), *common_items, sep="\n"))(sorted(reduce(lambda a, b: a.intersection(b), map(set, (input().split() for _ in range(int(input().split()[0])))))))
 
-for i in range(number_of_lists):
-    lists.append(set(input().split()))
-
-result = reduce(lambda a, b: a.intersection(b), lists)
-
-result = list(result)
-result.sort()
-
-print(len(result))
-for item in result:
-    print(item)
