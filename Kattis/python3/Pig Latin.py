@@ -1,21 +1,23 @@
-vowels = ["a", "e", "i", "o", "u", "y"]
+vowels = {'a', 'e', 'i', 'o', 'u', 'y'}
 
 while True:
     try:
         words = input().split()
 
-        result = ""
+        result = []
         for word in words:
-            if word[0] in vowels:
-                result += " " + word + "yay"
-                continue
-            for i, char in enumerate(word):
-                if char in vowels:
-                    result += " " + word[i:] + word[:i] + "ay"
+            for i, letter in enumerate(word):
+                if letter not in vowels:
+                    continue
+
+                if not i:
+                    result.append(word + "yay")
                     break
 
-        print(result.strip())
+                result.append(word[i:] + word[:i] + "ay")
+                break
+
+        print(" ".join(result))
 
     except EOFError:
         break
-        
