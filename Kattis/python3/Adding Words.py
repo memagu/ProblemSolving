@@ -1,39 +1,48 @@
-definitions_var_val = {}
+variable_value_pairs = {}
 
 while True:
     try:
-        instruction = input().split()
+        line = input().split()
     except EOFError:
         break
 
-    if instruction[0] == "def":
-        definitions_var_val[instruction[1]] = int(instruction[2])
+    command = line[0]
 
-        # print(definitions_var_val)
-        # print(definitions_val_var)
+    if command == "def":
+        variable, value = line[1:]
+        if variable in variable_value_pairs:
+            del variable_value_pairs[variable_value_pairs[variable]]
+        value = int(value)
 
-    if instruction[0] == "clear":
-        definitions_var_val = {}
+        variable_value_pairs[variable] = value
+        variable_value_pairs[value] = variable
+        continue
 
-    if instruction[0] == "calc":
-        unknown = False
-        task = instruction[1:-1]
-        task_s = ""
-        for operation in task:
-            if operation in ["-", "+"]:
-                task_s += operation
-            else:
-                try:
-                    task_s += str(definitions_var_val[operation])
-                except KeyError:
-                    unknown = True
+    if command == "calc":
+        if line[1] not in variable_value_pairs:
+            print(f"{' '.join(line[1:])} unknown")
+            continue
 
-        if unknown:
-            result = "unknown"
-        else:
-            try:
-                result = list(definitions_var_val.keys())[list(definitions_var_val.values()).index(eval(task_s))]
-            except ValueError:
-                result = "unknown"
+        calculated_value = variable_value_pairs[line[1]]
 
-        print(" ".join(instruction[1:]) + " " + result)
+        unknown_variables = False
+        for i in range(2, len(line) - 1, 2):
+            operation, variable = line[i:i + 2]
+            if variable not in variable_value_pairs:
+                unknown_variables = True
+                break
+
+            if operation == '+':
+                calculated_value += variable_value_pairs[variable]
+                continue
+
+            calculated_value -= variable_value_pairs[variable]
+
+        if unknown_variables or calculated_value not in variable_value_pairs:
+            print(f"{' '.join(line[1:])} unknown")
+            continue
+
+        print(f"{' '.join(line[1:])} {variable_value_pairs[calculated_value]}")
+        continue
+
+    variable_value_pairs.clear()
