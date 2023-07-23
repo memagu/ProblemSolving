@@ -8,13 +8,10 @@ class Solution:
 #
 #         carry = False
 #         bin_long, bin_short = (a, b) if len(a) >= len(b) else (b, a)
-#         for i in range(-1, -len(bin_long) - 1,
-#                        -1):  # Loopa med negativa index med längden på den längsta inputen. Ex: med a="1001" och b="11 blir i -1, -2, -3, och -4.
+#         for i in range(-1, -len(bin_long) - 1, -1):
 #             long_val = bin_long[i]
-#             short_val = bin_short[i] if i >= -len(
-#                 bin_short) else '0'  # Om du är "förbi" den kortare inputen säg att den består av nollor vid denna position
+#             short_val = bin_short[i] if i >= -len(bin_short) else '0'
 #
-#             #  Räkna binär addition som man gör med uppstälning, carry är när du behöver gå vidare till nästa storleksording. Ex (bas10) 1 + 9 då blir entalet 0 och man "carryar" 1 till tiotalspositionen.
 #             if carry:
 #                 if long_val == short_val == '0':
 #                     carry = False
@@ -32,15 +29,15 @@ class Solution:
 #
 #                     result += '0'
 #
-#         return (result + ('1' if carry else ''))[::-1]  # Lägg till 1 i slutet om det är en carry kvar. Returnera strängen bakochfram eftersom den blir baklänges när den byggs
+#         return (result + ('1' if carry else ''))[::-1]
 
 # def parse_binary(binary_string: str) -> int:
 #     result = 0
 #     for char in binary_string:
-#         result += char == '1'
 #         result <<= 1
+#         result += char == '1'
 #
-#     return result >> 1
+#     return result
 #
 #
 # def get_binary_representation(integer: int) -> str:
