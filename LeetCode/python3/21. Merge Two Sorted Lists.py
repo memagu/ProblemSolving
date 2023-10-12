@@ -6,35 +6,30 @@ class ListNode:
         self.val = val
         self.next = next
 
-    @staticmethod
-    def to_list(head):
-        if head.next is None:
-            return [head.val]
-
-        return [head.val] + ListNode.to_list(head.next)
-
-    def __str__(self):
-        return str(ListNode.to_list(self))
+    def __repr__(self):
+        return f"[{self.val}, {self.next}]"
 
 
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        result = ListNode()
-        result_tail = result
-        while list1 and list2:
-            if list1.val <= list2.val:
-                result_tail.next = list1
+        if not (list1 or list2):
+            return None
+
+        current = head = ListNode()
+        while True:
+            if not list2 or (list1 and list1.val <= list2.val):
+                current.val = list1.val
                 list1 = list1.next
-                result_tail = result_tail.next
-                continue
+            else:
+                current.val = list2.val
+                list2 = list2.next
 
-            result_tail.next = list2
-            list2 = list2.next
-            result_tail = result_tail.next
+            if not (list1 or list2):
+                break
 
-        result_tail.next = list1 or list2
+            current.next = current = ListNode()
 
-        return result.next
+        return head
 
 
 if __name__ == "__main__":
