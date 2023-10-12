@@ -12,24 +12,18 @@ class ListNode:
 
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        if not (list1 or list2):
-            return None
-
-        current = head = ListNode()
-        while True:
-            if not list2 or (list1 and list1.val <= list2.val):
-                current.val = list1.val
-                list1 = list1.next
+        current = dummy = ListNode()
+        while list1 and list2:
+            if list1.val <= list2.val:
+                current.next, list1 = list1, list1.next
             else:
-                current.val = list2.val
-                list2 = list2.next
+                current.next, list2 = list2, list2.next
 
-            if not (list1 or list2):
-                break
+            current = current.next
 
-            current.next = current = ListNode()
+        current.next = None or list1 or list2
 
-        return head
+        return dummy.next
 
 
 if __name__ == "__main__":
@@ -37,4 +31,4 @@ if __name__ == "__main__":
     l2 = ListNode(1, ListNode(3, ListNode(4)))
     l3 = ListNode(1, ListNode(3))
 
-    print(Solution().mergeTwoLists(l1, l3))
+    print(Solution().mergeTwoLists(l1, l2))
