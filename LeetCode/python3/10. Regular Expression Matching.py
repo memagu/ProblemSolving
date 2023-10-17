@@ -1,18 +1,46 @@
-from functools import cache
+def generate_state_map(pattern: str) -> tuple[dict[tuple[int, str], int], int]:
+    states = {}
+    state = 0
+    last_instruction = pattern[0]
+
+    for instruction in pattern:
+        if instruction == '*':
+            states[(state - 1, last_instruction)] = state - 1
+            states[(state - 1, '')] = state
+            continue
+
+        states[(state, instruction)] = state + 1
+        last_instruction = instruction
+        state += 1
+
+    return states, state
 
 
 class Solution:
-    @cache
     def isMatch(self, s: str, p: str) -> bool:
-        if not p:
-            return not s
+        state_map, end_state = generate_state_map(p)
 
-        match = s and p[0] in (s[0], '.')
+        queue = [(0, 0)]
+        visited = set()
 
-        if len(p) >= 2 and p[1] == '*':
-            return match and self.isMatch(s[1:], p) or self.isMatch(s, p[2:])
+        while queue:
+            state, i = queue.pop()
+            visited.add((state, i))
 
-        return match and self.isMatch(s[1:], p[1:])
+            if i >= len(s) and state == end_state:
+                return True
+
+            for symbol in [''] + ([s[i], '.'] if i < len(s) else []):
+                key = (state, symbol)
+                if key not in state_map:
+                    continue
+
+                next_check = (state_map[key], i + 1 * bool(symbol))
+                if next_check in visited:
+                    continue
+                queue.append(next_check)
+
+        return False
 
 
 if __name__ == "__main__":
