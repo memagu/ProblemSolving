@@ -1,10 +1,11 @@
+import sys
 from typing import List
 
 
 class Solution:
     def threeSumClosest(self, nums: List[int], target: int) -> int:
         nums.sort()
-        min_diff = 20_001
+        min_diff = sys.maxsize
         min_diff_sum = 0
         for i, num in enumerate(nums):
             left = 0
