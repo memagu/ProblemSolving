@@ -1,6 +1,7 @@
 from typing import List
 
 
+# Make space o(n) -> O(1)
 class Solution:
     def firstMissingPositive(self, nums: List[int]) -> int:
         unique_nums = set(nums)
