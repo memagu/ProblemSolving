@@ -3,14 +3,7 @@ from typing import List
 
 class Solution:
     def splitWordsBySeparator(self, words: List[str], separator: str) -> List[str]:
-        result = []
-
-        for word in words:
-            for sub_word in word.split(separator):
-                if sub_word:
-                    result.append(sub_word)
-
-        return result
+        return list(filter(bool, (split_word for word in words for split_word in word.split(separator))))
 
 
 if __name__ == "__main__":
