@@ -1,12 +1,6 @@
 class Solution:
     def numberOfSteps(self, num: int) -> int:
-        if num == 0:
-            return 0
-
-        ones = num.bit_count()
-        zeros = num.bit_length() - ones
-
-        return (ones << 1) - 1 + zeros
+        return 0 if num == 0 else num.bit_count() - 1 + num.bit_length()
 
 
 if __name__ == "__main__":
