@@ -3,7 +3,13 @@ from typing import List
 
 class Solution:
     def differenceOfSum(self, nums: List[int]) -> int:
-        return sum(nums) - sum(int(digit) for num in nums for digit in str(num))
+        digit_sum = 0
+        for num in nums:
+            while num > 0:
+                num, ones_digit = divmod(num, 10)
+                digit_sum += ones_digit
+
+        return sum(nums) - digit_sum
 
 
 if __name__ == "__main__":
