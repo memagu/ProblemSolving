@@ -13,9 +13,3 @@ class Solution:
 if __name__ == "__main__":
     print(Solution().fullBloomFlowers([[1, 6], [3, 7], [9, 12], [4, 13]], [2, 3, 7, 11]))
     print(Solution().fullBloomFlowers([[1, 10], [3, 3]], [3, 3, 2]))
-
-
-
-if __name__ == "__main__":
-    print(Solution().fullBloomFlowers([[1, 6], [3, 7], [9, 12], [4, 13]], [2, 3, 7, 11]))
-    print(Solution().fullBloomFlowers([[1, 10], [3, 3]], [3, 3, 2]))
