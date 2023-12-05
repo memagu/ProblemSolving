@@ -37,7 +37,7 @@ def part1():
         if next_map == "location":
             break
 
-        conversion_step = next((map_name for map_name in maps if map_name.startswith(next_map)), None)
+        conversion_step = next((map_name for map_name in maps if map_name.startswith(next_map)))
 
     return min(queue)
 
@@ -91,7 +91,7 @@ def part2():
         if next_map == "location":
             break
 
-        conversion_step = next((map_name for map_name in maps if map_name.startswith(next_map)), None)
+        conversion_step = next((map_name for map_name in maps if map_name.startswith(next_map)))
 
     return min(queue, key=lambda r: r.start).start
 
