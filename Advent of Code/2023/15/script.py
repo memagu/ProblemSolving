@@ -53,7 +53,6 @@ def part2():
     return result
 
 
-
 if __name__ == "__main__":
     print(part1())
     print(part2())
