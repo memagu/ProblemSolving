@@ -4,7 +4,6 @@ from pprint import pprint
 import sys
 
 
-
 def part1():
     with open("data.in", 'r') as f:
         bricks = [((~sys.maxsize, ~sys.maxsize, -1), (sys.maxsize, sys.maxsize, -1))]
@@ -52,7 +51,7 @@ def part1():
 
 
 def part2():
-    with open("example.in", 'r') as f:
+    with open("data.in", 'r') as f:
         bricks = [((~sys.maxsize, ~sys.maxsize, -1), (sys.maxsize, sys.maxsize, -1))]
         for line in f.read().splitlines():
             (x1, y1, z1), (x2, y2, z2) = [map(int, coordinate.split(',')) for coordinate in line.split('~')]
@@ -100,30 +99,26 @@ def part2():
 
     pprint(graph)
 
-    max_disintegrated = 0
+    total_fall = 0
     for start in graph:
-        disintegrated = 0
+        seen_counter = [0] * len(compacted)
+        falls = 0
         queue = [start]
-        visited = {start,}
         while queue:
-            parents, children = graph[queue.pop()]
+            node = queue.pop()
+            parents, children = graph[node]
 
-            if len(parents) > 1 and (parents - visited):
-                continue
+            for child in children:
+                seen_counter[child] += 1
+                child_parents, _ = graph[child]
 
-            disintegrated += 1
+                if seen_counter[child] == len(child_parents):
+                    falls += 1
+                    queue.append(child)
 
-            queue.extend(children)
-            visited.update(children)
+        total_fall += falls
 
-        max_disintegrated = max(max_disintegrated, disintegrated)
-
-    return max_disintegrated
-
-    # TODO mark extendible tree
-
-
-
+    return total_fall
 
 
 if __name__ == "__main__":
