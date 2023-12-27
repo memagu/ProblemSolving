@@ -110,7 +110,7 @@ def part2():
             )
         )
 
-    solutions = sympy.solve(equations, xr, yr, zr, vxr, vyr, vzr)
+    solutions = sympy.solve(equations, (xr, yr, zr, vxr, vyr, vzr))
 
     x, y, z, _, _, _ = solutions[0]
 
