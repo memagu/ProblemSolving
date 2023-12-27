@@ -69,15 +69,17 @@ def part2():
             hailstones.append((pos, velocity))
 
     """
+    Rock and hailstone must be at same location at ti.
     xr + vxr * ti = xi + vxi * ti
-
+    
+    Solve for ti.
     vxr * ti - vxi * ti = xi - xr
-
+    
     ti * (vxr - vxi) = xi - xr
-
+    
     ti = (xi - xr) / (vxr - vxi)
 
-    The same for y and z:
+    The same is true for y and z.
     ti = (xi - xr) / (vxr - vxi) = (yi - yr) / (vyr - vyi) = (zi - zr) / (vzr - vzi)
 
     Split the equality into two equations: x=y and y=x.
