@@ -112,7 +112,7 @@ def part2():
 
     solutions = sympy.solve(equations, xr, yr, zr, vxr, vyr, vzr)
 
-    x, y, z, _, _ , _ = solutions[0]
+    x, y, z, _, _, _ = solutions[0]
 
     return x + y + z
 
