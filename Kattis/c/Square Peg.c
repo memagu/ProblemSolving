@@ -1,1 +1,1 @@
-main(s,r){scanf("%d%d",&s,&r);puts(s>r/.708?"nope":"fits");}
+main(l,r){scanf("%d%d",&l,&r);puts(l>r/.708?"nope":"fits");}
