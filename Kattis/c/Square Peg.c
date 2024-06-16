@@ -1,1 +1,1 @@
-main(){float s,r;scanf("%f %f",&s,&r);printf(s>r/.708?"nope":"fits");}
+main(s,r){scanf("%d%d",&s,&r);puts(s>r/.708?"nope":"fits");}
