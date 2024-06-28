@@ -1,54 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-#define MAX(X, Y) (((X) > (Y)) ? (X) : (Y))
-#define MIN(X, Y) (((X) < (Y)) ? (X) : (Y))
-#define CLAMP(V, MIN_V, MAX_V) MIN(MAX(V, MIN_V), MAX_V)
-
-int compare(const void *a, const void *b) {
-    double *a_row = (double *)a;
-    double *b_row = (double *)b;
-
-    return b_row[3] - a_row[3];
-}
-
-double evaluate_quadratic(double x, double *row) {
-    return x * x * row[0] + x * row[1] + row[2];
-}
-
-int main() {
-    int n, i, j;
-    double values[100000][4], r;
-
-    scanf("%d",&n);
-
-    for (i = 0; i < n; i++) {
-        scanf("%lf %lf %lf %lf", values[i], values[i] + 1, values[i] + 2, values[i] + 3);
-    }
-
-    qsort(values, n, 4 * sizeof(double), compare);
-
-    for (i = 1; i < n; i++) {
-        for (j = 0; j < 3; j++) {
-            values[i][j] += values[i - 1][j];
-        }
-    }
-
-    r = 0;
-    for (i = 0; i < n; i++) {
-        r = MAX(
-            r,
-            MAX(
-                values[i][2],
-                MAX(
-                    evaluate_quadratic(CLAMP(-values[i][1]/(2*values[i][0]+0.001), 0, values[i][3]), values[i]),
-                    evaluate_quadratic(values[i][3], values[i])
-                )
-            )
-        );
-    }
-
-    printf("%lf\n", r);
-
-    return 0;
-}
+#define M(X,Y)(X>Y?X:Y)
+#define D double
+#define F f[i]
+#define I -F[1]/(2*F[0])
+c(void*a,void*b){return*((D*)b+3)-*((D*)a+3);}D e(D x,D*r){return x*x*r[0]+x*r[1]+r[2];}main(n,i,j){D f[100000][4],r=0;scanf("%d",&n);for(i=0;i<n;i++)scanf("%lf%lf%lf%lf",F,F+1,F+2,F+3);qsort(f,n,32,c);for(i=1;i<n;i++)for(j=0;j<3;j++)F[j]+=f[i-1][j];for(i=0;i<n;i++)r=M(r,M(F[2],M(e(M((I<F[3]?I:0),0),F),e(F[3],F))));printf("%lf",r);}
