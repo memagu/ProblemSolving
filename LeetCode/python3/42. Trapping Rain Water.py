@@ -7,9 +7,10 @@ class Solution:
         if len(height) < 3:
             return 0
 
-        summit = max(enumerate(height), key=itemgetter(1))[0]
+        summit = max(enumerate(height), key=itemgetter(1))[0]  # Find the index of the summit
         water = 0
 
+        # Scan from the left wall to the summit
         current = 0
         lookahead = current + 1
         while lookahead < summit:
@@ -18,6 +19,7 @@ class Solution:
             water += height[current] - height[lookahead]
             lookahead += 1
 
+        # Scan from the right wall to the summit
         current = len(height) - 1
         lookahead = current - 1
         while lookahead > summit:
