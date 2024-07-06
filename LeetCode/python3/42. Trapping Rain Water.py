@@ -1,32 +1,30 @@
+from operator import itemgetter
 from typing import List
 
 
 class Solution:
     def trap(self, height: List[int]) -> int:
-        right_max = [(-1, len(height))] * len(height)
-        for right in range(len(height) - 2, -1, -1):
-            right_max[right] = max((height[right + 1], right + 1), right_max[right + 1])
+        if len(height) < 3:
+            return 0
 
-        current = result = 0
-        while current < len(height):
-            right_max_height, right_max_index = right_max[current]
-            if right_max_height <= height[current]:
-                for i in range(current + 1, right_max_index):
-                    result += max(0, right_max_height - height[i])
+        summit = max(enumerate(height), key=itemgetter(1))[0]
+        result = 0
 
-                current = right_max_index
-                continue
+        current = 0
+        lookahead = current + 1
+        while lookahead < summit:
+            if height[lookahead] >= height[current]:
+                current = lookahead
+            result += height[current] - height[lookahead]
+            lookahead += 1
 
-            water_batch = 0
-            for lookahead in range(current + 1, len(height)):
-                if height[lookahead] >= height[current]:
-                    current = lookahead
-                    break
-                water_batch += height[current] - height[lookahead]
-            else:
-                current += 1
-                continue
-            result += water_batch
+        current = len(height) - 1
+        lookahead = current - 1
+        while lookahead > summit:
+            if height[lookahead] >= height[current]:
+                current = lookahead
+            result += height[current] - height[lookahead]
+            lookahead -= 1
 
         return result
 
