@@ -8,14 +8,14 @@ class Solution:
             return 0
 
         summit = max(enumerate(height), key=itemgetter(1))[0]
-        result = 0
+        water = 0
 
         current = 0
         lookahead = current + 1
         while lookahead < summit:
             if height[lookahead] >= height[current]:
                 current = lookahead
-            result += height[current] - height[lookahead]
+            water += height[current] - height[lookahead]
             lookahead += 1
 
         current = len(height) - 1
@@ -23,10 +23,10 @@ class Solution:
         while lookahead > summit:
             if height[lookahead] >= height[current]:
                 current = lookahead
-            result += height[current] - height[lookahead]
+            water += height[current] - height[lookahead]
             lookahead -= 1
 
-        return result
+        return water
 
 
 if __name__ == "__main__":
