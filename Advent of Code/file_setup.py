@@ -1,24 +1,59 @@
 import os
+from pathlib import Path
 import shutil
+import sys
 
-year = input("Enter year: ").strip()
-day = input("Enter day (1-25): ").strip()
+SNIPPETS_PATH = Path(f"./snippets/")
+LANGUAGES = (
+    ("python3", ".py"),
+    ("scala3", ".scala")
+)
 
-directory = fr"{year}/{day}/"
 
-if os.path.exists(directory):
-    if input("Directory already exists! Do you want to proceed with total annihilation of directory and then rebirth of the files? [Y/n]: ").lower() != 'y':
-        exit()
+def prompt_int(
+        prompt: str = "Enter an integer: ",
+        error_message: str = "Invalid input, please enter an integer.",
+        min_value: int = -sys.maxsize - 1,
+        max_value: int = sys.maxsize
+) -> int:
+    while True:
+        try:
+            value = int(input(prompt))
+            if not min_value <= value <= max_value:
+                raise ValueError
+            return value
+        except ValueError:
+            print(error_message)
 
-    shutil.rmtree(directory)
 
-os.makedirs(directory)
+def main() -> None:
+    year = prompt_int("Enter year: ")
+    day = prompt_int("Enter day (1-25): ", "Invalid input, please enter an integer in the interval [1, 25].", 1, 25)
 
-with open(directory + "data.in", 'w') as _:
-    pass
+    directory = Path(f"./{year}/{day}/")
 
-with open(directory + "example.in", 'w') as _:
-    pass
+    if directory.exists():
+        if input(
+                "Directory already exists! Do you want to proceed with total annihilation of directory and then rebirth of the files? [Y/n] (default no): ").lower() != 'y':
+            return
 
-with open(directory + "script.py", 'w') as f:
-    f.write('def part1():\n    with open("data.in", \'r\') as f:\n        pass\n\n\ndef part2():\n    with open("data.in", \'r\') as f:\n        pass\n\n\nif __name__ == "__main__":\n    print(part1())\n    print(part2())\n')
+        shutil.rmtree(directory)
+
+    directory.mkdir(parents=True, exist_ok=True)
+    (directory / "data.in").touch()
+    (directory / "example.in").touch()
+
+    for i, (language, extension) in enumerate(LANGUAGES, 1):
+        print(f"{f"{i}.": <4}{language}")
+    option = prompt_int(
+        "Select language: ",
+        f"Invalid input, please enter an integer in the interval [1, {len(LANGUAGES)}].",
+        1,
+        len(LANGUAGES)
+    ) - 1
+    snippet = SNIPPETS_PATH / f"script{LANGUAGES[option][1]}"
+    shutil.copy(snippet, directory / snippet.name)
+
+
+if __name__ == "__main__":
+    main()
