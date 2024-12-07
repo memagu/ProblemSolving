@@ -8,13 +8,12 @@ object Solution:
       }
     })
 
-  // Incomplete
   def part2(file: String): Int =
-    scala.io.Source.fromFile(file).getLines().map(_.split(" ").map(_.toInt)).count(_.sliding(3).count {
-      case Array(a, b, c) => !(((a < b && b < c) || (a > b && b > c)) && Array(a, b, c).sliding(2).forall {
-        case Array(x, y) => (1 to 3).contains((x - y).abs)
-      })
-    } <= 2)
+    scala.io.Source.fromFile(file).getLines().map(_.split(" ").map(_.toInt)).count(report => report.indices.map(i => report.indices.filter(value => value != i).map(report)).exists(_.sliding(3).forall {
+      case IndexedSeq(a, b, c) => ((a < b && b < c) || (a > b && b > c)) && IndexedSeq(a, b, c).sliding(2).forall {
+        case IndexedSeq(x, y) => (1 to 3).contains((x - y).abs)
+      }
+    }))
 
 @main
 def main(): Unit =
