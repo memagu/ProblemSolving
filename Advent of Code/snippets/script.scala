@@ -11,8 +11,8 @@ object Solution:
 def main(): Unit =
   import Solution._
 
-  val dataInput: String = io.Source.fromFile("./data.in")
-  val exampleInput: String = io.Source.fromFile("./example.in")
+  val dataInput: BufferedSource = io.Source.fromFile("./data.in")
+  val exampleInput: BufferedSource = io.Source.fromFile("./example.in")
 
   println(s"Part 1: ${part1(dataInput)}")
   println(s"Part 1 (example): ${part1(exampleInput)}")
