@@ -6,7 +6,8 @@ import sys
 SNIPPETS_PATH = Path(f"./snippets/")
 LANGUAGES = (
     ("python3", ".py"),
-    ("scala3", ".scala")
+    ("scala3", ".scala"),
+    ("java", ".java")
 )
 
 
@@ -51,9 +52,12 @@ def main() -> None:
         1,
         len(LANGUAGES)
     ) - 1
-    snippet = SNIPPETS_PATH / f"script{LANGUAGES[option][1]}"
+    snippet = Path(SNIPPETS_PATH / f"script{LANGUAGES[option][1]}")
+    if not snippet.exists():
+        snippet = Path(SNIPPETS_PATH / f"Script{LANGUAGES[option][1]}")
     shutil.copy(snippet, directory / snippet.name)
 
 
 if __name__ == "__main__":
     main()
+
