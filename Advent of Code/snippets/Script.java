@@ -14,8 +14,8 @@ class Solutions {
 
 class Script {
     public static void main(String[] args) throws IOException {
-        String realData = Files.readString(Paths.get("./data.in"));
-        String exampleData = Files.readString(Paths.get("./example.in"));
+        String realData = Files.readString(Paths.get("./data.in")).strip();
+        String exampleData = Files.readString(Paths.get("./example.in")).strip();
 
         System.out.printf("Part 1: %d%n", Solutions.part1(realData));
         System.out.printf("Part 1 (example): %d%n", Solutions.part1(exampleData));
